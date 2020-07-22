@@ -2,7 +2,6 @@
   "annotations": {
     "list": [
       {
-        "$$hashKey": "object:286",
         "builtIn": 1,
         "datasource": "-- Grafana --",
         "enable": true,
@@ -17,7 +16,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1584466048098,
+  "id": 12,
+  "iteration": 1595250502802,
   "links": [
     {
       "icon": "dashboard",
@@ -53,7 +53,7 @@
       "scopedVars": {
         "car": {
           "selected": false,
-          "text": "1",
+          "text": "Joules Bleu",
           "value": "1"
         }
       },
@@ -72,7 +72,7 @@
       "options": {
         "fieldOptions": {
           "calcs": [
-            "mean"
+            "lastNotNull"
           ],
           "defaults": {
             "color": {
@@ -90,7 +90,7 @@
                 },
                 {
                   "color": "semi-dark-yellow",
-                  "value": 10
+                  "value": 5
                 },
                 {
                   "color": "semi-dark-green",
@@ -116,11 +116,11 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "6.7.4",
       "scopedVars": {
         "car": {
           "selected": false,
-          "text": "1",
+          "text": "Joules Bleu",
           "value": "1"
         }
       },
@@ -194,11 +194,11 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "6.7.4",
       "scopedVars": {
         "car": {
           "selected": false,
-          "text": "1",
+          "text": "Joules Bleu",
           "value": "1"
         }
       },
@@ -277,11 +277,11 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "6.7.4",
       "scopedVars": {
         "car": {
           "selected": false,
-          "text": "1",
+          "text": "Joules Bleu",
           "value": "1"
         }
       },
@@ -368,7 +368,7 @@
       "scopedVars": {
         "car": {
           "selected": false,
-          "text": "1",
+          "text": "Joules Bleu",
           "value": "1"
         }
       },
@@ -491,6 +491,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "pluginVersion": "6.7.4",
       "postfix": " $length_unit",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -505,7 +506,7 @@
       "scopedVars": {
         "car": {
           "selected": false,
-          "text": "1",
+          "text": "Joules Bleu",
           "value": "1"
         }
       },
@@ -623,7 +624,7 @@
       "scopedVars": {
         "car": {
           "selected": false,
-          "text": "1",
+          "text": "Joules Bleu",
           "value": "1"
         }
       },
@@ -642,7 +643,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "select $__time(date), convert_km(odometer::numeric, '$length_unit') from positions where car_id = $car order by date desc limit 1;",
+          "rawSql": "select $__time(date), convert_km(odometer, '$length_unit') from positions where car_id = $car order by date desc limit 1;",
           "refId": "A",
           "select": [
             [
@@ -740,7 +741,7 @@
       "scopedVars": {
         "car": {
           "selected": false,
-          "text": "1",
+          "text": "Joules Bleu",
           "value": "1"
         }
       },
@@ -846,7 +847,7 @@
       "scopedVars": {
         "car": {
           "selected": false,
-          "text": "1",
+          "text": "Joules Bleu",
           "value": "1"
         }
       },
@@ -869,7 +870,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__time(date),\n  charger_power as \"Power [kW]\",\n  charger_actual_current as \"Current [A]\",\n  c.charge_energy_added as \"kW Added\"\nFROM\n  charges c\njoin\n  charging_processes p ON p.id = c.charging_process_id \nWHERE\n  $__timeFilter(date) and\n  p.car_id = $car\nORDER BY\n  date ASC",
+          "rawSql": "SELECT\n  $__time(date),\n  charger_power as \"Power [kW]\",\n  charger_actual_current as \"Current [A]\"\nFROM\n  charges c\njoin\n  charging_processes p ON p.id = c.charging_process_id \nWHERE\n  $__timeFilter(date) and\n  p.car_id = $car\nORDER BY\n  date ASC",
           "refId": "B",
           "select": [
             [
@@ -983,16 +984,40 @@
             "color": {
               "mode": "thresholds"
             },
-            "decimals": 0,
+            "decimals": 1,
             "mappings": [],
-            "max": 100,
-            "min": 0,
+            "max": 28,
+            "min": 16,
             "thresholds": {
               "mode": "absolute",
               "steps": [
                 {
                   "color": "semi-dark-green",
                   "value": null
+                },
+                {
+                  "color": "#6ED0E0",
+                  "value": 16
+                },
+                {
+                  "color": "#1F78C1",
+                  "value": 18
+                },
+                {
+                  "color": "#508642",
+                  "value": 20
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 25
+                },
+                {
+                  "color": "#EF843C",
+                  "value": 26
+                },
+                {
+                  "color": "#E24D42",
+                  "value": 27
                 }
               ]
             },
@@ -1005,11 +1030,11 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "6.7.4",
       "scopedVars": {
         "car": {
           "selected": false,
-          "text": "1",
+          "text": "Joules Bleu",
           "value": "1"
         }
       },
@@ -1019,7 +1044,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n\t$__time(date),\n\tconvert_celsius(driver_temp_setting, '$temp_unit') as \"Driver Temperature [°$temp_unit]\"\nFROM positions\nWHERE driver_temp_setting IS NOT NULL AND car_id = $car AND date >= (NOw() - interval '10m')\nORDER BY date DESC\nLIMIT 1;",
+          "rawSql": "SELECT\n\t$__time(date),\n\tconvert_celsius(driver_temp_setting, '$temp_unit') as \"Driver Temperature [°$temp_unit]\"\nFROM positions\nWHERE car_id = $car\nORDER BY date DESC\nLIMIT 1;",
           "refId": "A",
           "select": [
             [
@@ -1066,16 +1091,48 @@
             "color": {
               "mode": "thresholds"
             },
-            "decimals": 0,
+            "decimals": 1,
             "mappings": [],
-            "max": 100,
-            "min": 0,
+            "max": 50,
+            "min": -20,
             "thresholds": {
               "mode": "absolute",
               "steps": [
                 {
                   "color": "semi-dark-green",
                   "value": null
+                },
+                {
+                  "color": "#6ED0E0",
+                  "value": -30
+                },
+                {
+                  "color": "#1F78C1",
+                  "value": -10
+                },
+                {
+                  "color": "#0A437C",
+                  "value": 0
+                },
+                {
+                  "color": "#508642",
+                  "value": 15
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 30
+                },
+                {
+                  "color": "#EF843C",
+                  "value": 40
+                },
+                {
+                  "color": "#E24D42",
+                  "value": 45
+                },
+                {
+                  "color": "#890F02",
+                  "value": 50
                 }
               ]
             },
@@ -1088,11 +1145,11 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "6.7.4",
       "scopedVars": {
         "car": {
           "selected": false,
-          "text": "1",
+          "text": "Joules Bleu",
           "value": "1"
         }
       },
@@ -1102,7 +1159,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "WITH last_position AS (\n\tSELECT date, convert_celsius(outside_temp, '$temp_unit') AS \"Outside Temperature [°$temp_unit]\"\n\tFROM positions\n\tWHERE car_id = $car AND outside_temp IS NOT NULL AND date >= (NOw() - interval '10m')\n\tORDER BY date DESC\n\tLIMIT 1\n),\nlast_charge AS (\n\tSELECT date, convert_celsius(outside_temp, '$temp_unit') AS \"Outside Temperature [°$temp_unit]\"\n\tFROM charges\n\tJOIN charging_processes ON charges.charging_process_id = charging_processes.id\n\tWHERE car_id = $car AND outside_temp IS NOT NULL AND date >= (NOw() - interval '10m')\n\tORDER BY date DESC\n\tLIMIT 1\n)\nSELECT * FROM last_position\nUNION ALL\nSELECT * FROM last_charge\nORDER BY date DESC\nLIMIT 1;",
+          "rawSql": "WITH last_position AS (\n\tSELECT date, convert_celsius(outside_temp, '$temp_unit') AS \"Outside Temperature [°$temp_unit]\"\n\tFROM positions\n\tWHERE car_id = $car AND outside_temp IS NOT NULL\n\tORDER BY date DESC\n\tLIMIT 1\n),\nlast_charge AS (\n\tSELECT date, convert_celsius(outside_temp, '$temp_unit') AS \"Outside Temperature [°$temp_unit]\"\n\tFROM charges\n\tJOIN charging_processes ON charges.charging_process_id = charging_processes.id\n\tWHERE car_id = $car AND outside_temp IS NOT NULL\n\tORDER BY date DESC\n\tLIMIT 1\n)\nSELECT * FROM last_position\nUNION ALL\nSELECT * FROM last_charge\nORDER BY date DESC\nLIMIT 1;",
           "refId": "A",
           "select": [
             [
@@ -1149,16 +1206,48 @@
             "color": {
               "mode": "thresholds"
             },
-            "decimals": 0,
+            "decimals": 1,
             "mappings": [],
-            "max": 100,
-            "min": 0,
+            "max": 50,
+            "min": -10,
             "thresholds": {
               "mode": "absolute",
               "steps": [
                 {
                   "color": "semi-dark-green",
                   "value": null
+                },
+                {
+                  "color": "#6ED0E0",
+                  "value": -10
+                },
+                {
+                  "color": "#1F78C1",
+                  "value": 0
+                },
+                {
+                  "color": "#0A437C",
+                  "value": 10
+                },
+                {
+                  "color": "#508642",
+                  "value": 20
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 27
+                },
+                {
+                  "color": "#EF843C",
+                  "value": 40
+                },
+                {
+                  "color": "#E24D42",
+                  "value": 45
+                },
+                {
+                  "color": "#890F02",
+                  "value": 50
                 }
               ]
             },
@@ -1171,11 +1260,11 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "6.7.4",
       "scopedVars": {
         "car": {
           "selected": false,
-          "text": "1",
+          "text": "Joules Bleu",
           "value": "1"
         }
       },
@@ -1185,7 +1274,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  date,\n  convert_celsius(inside_temp, '$temp_unit') AS \"Inside Temperature [°$temp_unit]\"\nFROM positions\nWHERE\n  car_id = $car\n  and inside_temp is not null AND date >= (NOw() - interval '10m')\norder by date desc\nlimit 1 ",
+          "rawSql": "SELECT\n  date,\n  convert_celsius(inside_temp, '$temp_unit') AS \"Inside Temperature [°$temp_unit]\"\nFROM positions\nWHERE\n  car_id = $car\n  and inside_temp is not null\norder by date desc\nlimit 1 ",
           "refId": "A",
           "select": [
             [
@@ -1275,7 +1364,7 @@
       "scopedVars": {
         "car": {
           "selected": false,
-          "text": "1",
+          "text": "Joules Bleu",
           "value": "1"
         }
       },
@@ -1411,7 +1500,7 @@
       "writeMetricNames": false
     }
   ],
-  "refresh": "30s",
+  "refresh": "1m",
   "schemaVersion": 22,
   "style": "dark",
   "tags": [
@@ -1501,8 +1590,8 @@
       {
         "allValue": null,
         "current": {
-          "text": "ideal",
-          "value": "ideal"
+          "text": "rated",
+          "value": "rated"
         },
         "datasource": "TeslaMate",
         "definition": "select preferred_range from settings limit 1;",
@@ -1527,8 +1616,8 @@
       {
         "allValue": null,
         "current": {
-          "text": "http://localhost:4000",
-          "value": "http://localhost:4000"
+          "text": "https://teslamate.adrian.olex.me",
+          "value": "https://teslamate.adrian.olex.me"
         },
         "datasource": "TeslaMate",
         "definition": "select base_url from settings limit 1;",
@@ -1553,7 +1642,7 @@
     ]
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-2d",
     "to": "now"
   },
   "timepicker": {
